@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback Survey</title>
+    <style>
+        /* Your existing CSS styles go here */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f8c156;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .survey-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.4s; }
+        .form-group:nth-child(3) { animation-delay: 0.6s; }
+        .form-group:nth-child(4) { animation-delay: 0.8s; }
+        .form-group:nth-child(5) { animation-delay: 1s; }
+        .form-group:nth-child(6) { animation-delay: 1.2s; }
+        .form-group:nth-child(7) { animation-delay: 1.4s; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .stars {
+            display: flex;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            margin: 0 2px;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .star.active {
+            color: #ffca28;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 0.2rem;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 10px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            margin: 0.5rem 0;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            background: #388e3c;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            background-color: #f2f2f2;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        input[type="email"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-info > div {
+            flex: 1;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        footer {
+            background-color: #eee;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+            background-color: #555;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .thank-you h2 {
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+
+        .thank-you p {
+            margin-bottom: 2rem;
+        }
+
+        .character-container {
+            margin: 2rem auto;
+            text-align: center;
+            height: 200px;
+            position: relative;
+        }
+
+        .character {
+            position: relative;
+            display: inline-block;
+            font-size: 120px;
+            animation: dance 2s infinite;
+            margin: 0 auto;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 2px solid #4CAF50;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #4CAF50;
+            white-space: nowrap;
+            animation: bobbing 2s infinite ease-in-out;
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #4CAF50;
+        }
+
+        @keyframes dance {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(-5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes bobbing {
+            0% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+            100% { transform: translateX(-50%) translateY(0); }
+        }
+
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f8c156;
+            opacity: 0.7;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+            }
+
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .character {
+                font-size: 80px;
+            }
+
+            .speech-bubble {
+                font-size: 14px;
+                padding: 8px 15px;
+                top: -60px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Web3Forms Script -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <i class="fas fa-utensils"></i> &nbsp;Fog & Flame
+    </div>
+    <nav>
+        <a href="HomePage.html">Home</a>
+        <a href="AboutPage.html">About</a>
+        <a href="Services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>We Value Your Feedback</h1>
+
+    <!-- Web3Forms Integration -->
+    <form id="survey-form" class="survey-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="1eda9ba9-2c08-4abf-8464-3a1c0406f7d5">
+        <input type="hidden" name="subject" value="New Feedback Submission">
+        <input type="hidden" name="redirect" value="https://yourwebsite.com/thank-you">
+        <input type="hidden" name="from_name" value="Fog & Flame Feedback Form">
+        <input type="checkbox" name="botcheck" style="display: none;">
+
+        <div class="form-group">
+            <div class="contact-info">
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="overall">Overall Experience</label>
+            <input type="range" id="overall" class="slider" name="overall_experience" min="1" max="5" value="3">
+            <div class="rating">
+                <span>Very Unsatisfied</span>
+                <div class="stars" id="overall-stars">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <span>Very Satisfied</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Food Quality</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="food_quality" value="excellent"> Excellent
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="food_quality" value="good"> Good
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="food_quality" value="average"> Average
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="food_quality" value="poor"> Poor
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Service Quality</label>
+            <div class="checkbox-group">
+                <label class="checkbox-option">
+                    <input type="checkbox" name="service_quality[]" value="friendly"> Friendly Staff
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="service_quality[]" value="prompt"> Prompt Service
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="service_quality[]" value="knowledgeable"> Knowledgeable
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="service_quality[]" value="attentive"> Attentive
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="recommend">How likely are you to recommend us?</label>
+            <input type="range" id="recommend" class="slider" name="recommendation_score" min="0" max="10" value="7">
+            <div class="range-labels">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" placeholder="Your comments..."></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn">Submit Feedback</button>
+    </form>
+
+    <div id="thank-you" class="thank-you">
+        <h2>Thank You For Your Feedback!</h2>
+        <p>We appreciate you taking the time to share your experience with us. Your feedback helps us improve our services.</p>
+
+        <div class="character-container">
+            <div class="confetti-container" id="confetti-container"></div>
+            <div class="character" id="dancing-character">🧑‍🍳</div>
+            <div class="speech-bubble">Thank you for your feedback!</div>
+        </div>
+
+        <button id="new-survey-btn" class="btn">Submit Another Response</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <p class="copyright">© 2025 Fog & Flame. All rights reserved.</p>
+</footer>
+
+<!-- Font Awesome for icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Star rating functionality
+        const starContainers = document.querySelectorAll('.stars');
+
+        starContainers.forEach(container => {
+            const stars = container.querySelectorAll('.star');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const value = this.dataset.value;
+
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (s.dataset.value <= value) {
+                            s.classList.add('active');
+                        }
+                    });
+                });
+
+                star.addEventListener('click', function() {
+                    const value = this.dataset.value;
+                    const sliderId = container.id.replace('-stars', '');
+                    const slider = document.getElementById(sliderId);
+
+                    if (slider) {
+                        slider.value = value;
+                    }
+
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (s.dataset.value <= value) {
+                            s.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            container.addEventListener('mouseout', function() {
+                const sliderId = container.id.replace('-stars', '');
+                const slider = document.getElementById(sliderId);
+
+                if (slider) {
+                    const value = slider.value;
+
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (s.dataset.value <= value) {
+                            s.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Sync slider with stars
+        const sliders = document.querySelectorAll('.slider');
+
+        sliders.forEach(slider => {
+            const starsId = slider.id + '-stars';
+            const starsContainer = document.getElementById(starsId);
+
+            if (starsContainer) {
+                const stars = starsContainer.querySelectorAll('.star');
+
+                slider.addEventListener('input', function() {
+                    const value = this.value;
+
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (s.dataset.value <= value) {
+                            s.classList.add('active');
+                        }
+                    });
+                });
+
+                // Initialize stars based on slider value.
+                const initialValue = slider.value;
+                stars.forEach(s => {
+                    if (s.dataset.value <= initialValue) {
+                        s.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Radio and checkbox animation
+        const radioOptions = document.querySelectorAll('.radio-option');
+        radioOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                this.style.animation = 'pulse 0.3s';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 300);
+            });
+        });
+
+        const checkboxOptions = document.querySelectorAll('.checkbox-option');
+        checkboxOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                this.style.animation = 'pulse 0.3s';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 300);
+            });
+        });
+
+        // Confetti animation function
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const colors = ['#f8c156', '#4CAF50', '#ff7675', '#74b9ff', '#a29bfe', '#fd79a8'];
+            const confettiCount = 150;
+
+            confettiContainer.innerHTML = '';
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+
+                // Apply styles
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.left = `${left}%`;
+                confetti.style.animationDuration = `${duration}s`;
+                confetti.style.animationDelay = `${delay}s`;
+
+                // Random shape
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                } else {
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                }
+
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        // Dancing character options
+        const characters = ['🧑‍🍳', '👨‍🍳', '👩‍🍳', '🍽️', '🥂'];
+
+        // Form submission
+        const surveyForm = document.getElementById('survey-form');
+        const thankYou = document.getElementById('thank-you');
+        const submitBtn = document.getElementById('submit-btn');
+        const newSurveyBtn = document.getElementById('new-survey-btn');
+        const dancingCharacter = document.getElementById('dancing-character');
+
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Add button animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 100);
+
+            // Validate form
+            const emailInput = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let valid = true;
+
+            if (!emailInput.value || !emailPattern.test(emailInput.value)) {
+                emailInput.style.borderColor = 'red';
+                valid = false;
+            } else {
+                emailInput.style.borderColor = '#ddd';
+            }
+
+            if (valid) {
+                // Submit the form using Web3Forms
+                const form = document.getElementById('survey-form');
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show thank-you message regardless of response
+                        surveyForm.style.animation = 'fadeIn 0.5s reverse forwards';
+                        setTimeout(() => {
+                            surveyForm.style.display = 'none';
+                            thankYou.style.display = 'block';
+
+                            // Choose random character
+                            dancingCharacter.textContent = characters[Math.floor(Math.random() * characters.length)];
+
+                            // Create confetti
+                            createConfetti();
+                        }, 500);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show thank-you message even if there's an error
+                        surveyForm.style.animation = 'fadeIn 0.5s reverse forwards';
+                        setTimeout(() => {
+                            surveyForm.style.display = 'none';
+                            thankYou.style.display = 'block';
+                            dancingCharacter.textContent = characters[Math.floor(Math.random() * characters.length)];
+                            createConfetti();
+                        }, 500);
+                    });
+            }
+        });
+
+        newSurveyBtn.addEventListener('click', function() {
+            // Reset form
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+
+            const radioInputs = document.querySelectorAll('input[type="radio"]');
+            radioInputs.forEach(input => {
+                input.checked = false;
+            });
+
+            const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
+            checkboxInputs.forEach(input => {
+                input.checked = false;
+            });
+
+            const sliders = document.querySelectorAll('.slider');
+            sliders.forEach(slider => {
+                if (slider.id === 'overall') {
+                    slider.value = 3;
+                } else if (slider.id === 'recommend') {
+                    slider.value = 7;
+                }
+
+                // Update stars
+                const starsId = slider.id + '-stars';
+                const starsContainer = document.getElementById(starsId);
+                if (starsContainer) {
+                    const stars = starsContainer.querySelectorAll('.star');
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (s.dataset.value <= slider.value) {
+                            s.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            document.getElementById('comments').value = '';
+
+            // Show form again
+            thankYou.style.display = 'none';
+            surveyForm.style.display = 'block';
+            surveyForm.style.animation = 'slideUp 0.8s ease-out';
+
+            // Re-animate form groups
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.animation = 'none';
+                setTimeout(() => {
+                    group.style.animation = `fadeIn 0.5s ease-in forwards ${index * 0.2}s`;
+                }, 10);
+            });
+        });
+    });
+
+    // Replace the existing AI Assistant Chat Implementation section with this code
+    // AI Assistant Chat Implementation with Fixed Robot - Ageli
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create the chat container
+        const chatContainer = document.createElement('div');
+        chatContainer.id = 'restaurant-assistant';
+        chatContainer.className = 'fixed right-0 bottom-0 z-50 mr-4 mb-4';
+        document.body.appendChild(chatContainer);
+
+        // Create Ageli container with fixed positioning
+        const ageli = document.createElement('div');
+        ageli.id = 'ageli-robot';
+        ageli.style.position = 'fixed';
+        ageli.style.right = '20px';
+        ageli.style.bottom = '20px';
+        ageli.style.zIndex = '1000';
+        ageli.style.width = '90px';
+        ageli.style.cursor = 'pointer';
+        document.body.appendChild(ageli);
+
+        // Initial state
+        let isOpen = false;
+        let messages = [
+            { id: 1, text: "Hello! I'm Ageli, your personal Fog & Flame assistant. How may I be of service today?", isBot: true }
+        ];
+        let isTyping = false;
+        let speechBubbleVisible = false;
+        let permanentCaptionVisible = true; // New state for permanent caption
+        let speechTimeout = null;
+
+        // Quick questions
+        const quickQuestions = [
+            "What are your hours?",
+            "How can I make a reservation?",
+            "Tell me about your menu",
+            "Where are you located?"
+        ];
+
+        // Add styles for Ageli
+        const style = document.createElement('style');
+        style.textContent = `
+  @keyframes eyeGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 20px #00b7ff; opacity: 1; }
+  }
+
+  @keyframes chestGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 15px #00b7ff; opacity: 1; }
+  }
+
+  #ageli-robot {
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover {
+    transform: scale(1.05);
+  }
+
+  .ageli-speech-bubble {
+    position: absolute;
+    top: -80px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 220px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    animation: bubblePulse 2s infinite;
+  }
+
+  @keyframes bubblePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .ageli-speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .ageli-permanent-caption {
+    position: absolute;
+    top: -70px;
+    left: -150px; /* Changed from 5% to -150px to move it far left */
+    transform: translateX(0); /* Removed the -50% transformation */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    text-align: left;
+    animation: bubblePulse 2s infinite;
+  }
+
+  .ageli-permanent-caption:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 90%; /* Changed from 30% to 90% to position the pointer near the right */
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .robot-head {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: inset 0 -2px 6px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover .robot-head {
+    transform: scale(1.05);
+  }
+
+  .robot-face {
+    position: absolute;
+    background: #111;
+    width: 55px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 70% 70% 60% 60% / 80% 80% 40% 40%;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  }
+
+  .robot-eyes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .robot-eye {
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    background: #00b7ff;
+    border-radius: 50%;
+    animation: eyeGlow 3s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .robot-eye::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+
+  .robot-body {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    width: 65px;
+    height: 80px;
+    margin: -5px auto 0;
+    position: relative;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1010;
+  }
+
+  .robot-chest-light {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00b7ff;
+    border-radius: 50%;
+    left: 50%;
+    top: 33%;
+    transform: translate(-50%, -50%);
+    animation: chestGlow 2s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+  }
+
+  .robot-detail {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d0d0d0;
+    border-radius: 50%;
+    border: 1px solid #c0c0c0;
+  }
+
+  .detail-left {
+    left: 25%;
+    top: 50%;
+  }
+
+  .detail-right {
+    right: 25%;
+    top: 50%;
+  }
+
+  .detail-bottom {
+    width: 16px;
+    height: 2px;
+    left: 50%;
+    bottom: 25%;
+    transform: translateX(-50%);
+  }
+
+  /* Robot arms and hands */
+  .robot-arm {
+    position: absolute;
+    width: 12px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    top: 15px;
+    transform-origin: top center;
+    z-index: 1020;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .robot-arm-right {
+    right: -10px;
+    animation: armWavingRight 1.5s infinite;
+  }
+
+  .robot-arm-left {
+    left: -10px;
+    animation: armWavingLeft 1.5s infinite;
+  }
+
+  .robot-hand {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    bottom: -10px;
+    z-index: 1020;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  }
+
+  .robot-hand-right {
+    left: -4px;
+  }
+
+  .robot-hand-left {
+    right: -4px;
+  }
+
+  @keyframes armWavingRight {
+    0%, 100% { transform: rotate(30deg); }
+    25% { transform: rotate(60deg); }
+    50% { transform: rotate(30deg); }
+    75% { transform: rotate(60deg); }
+  }
+
+  @keyframes armWavingLeft {
+    0%, 100% { transform: rotate(-30deg); }
+    25% { transform: rotate(-60deg); }
+    50% { transform: rotate(-30deg); }
+    75% { transform: rotate(-60deg); }
+  }
+
+  .robot-finger {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+  }
+`;
+        document.head.appendChild(style);
+
+        // Render Ageli robot
+        function renderAgeli() {
+            ageli.innerHTML = `
+    <div class="relative">
+      ${permanentCaptionVisible ? `
+        <div class="ageli-permanent-caption">
+          Hi, I'm Ageli! Do you need help?
+        </div>
+      ` : ''}
+
+      ${speechBubbleVisible && !permanentCaptionVisible ? `
+        <div class="ageli-speech-bubble">
+          ${getRandomSpeech()}
+        </div>
+      ` : ''}
+
+      <!-- Robot Head -->
+      <div class="robot-head">
+        <div class="robot-face">
+          <div class="robot-eyes">
+            <div class="robot-eye"></div>
+            <div class="robot-eye"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robot Body -->
+      <div class="robot-body">
+        <div class="robot-chest-light"></div>
+        <div class="robot-detail detail-left"></div>
+        <div class="robot-detail detail-right"></div>
+        <div class="robot-detail detail-bottom"></div>
+        <div class="robot-arm robot-arm-right">
+          <div class="robot-hand robot-hand-right">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; left: 8px;"></div>
+          </div>
+        </div>
+        <div class="robot-arm robot-arm-left">
+          <div class="robot-hand robot-hand-left">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; right: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+        }
+
+        // Render the chat button (closed state)
+        function renderChatButton() {
+            // Empty implementation - no chat button displayed
+            chatContainer.innerHTML = '';
+        }
+
+        // Render the chat interface (open state)
+        function renderChatInterface() {
+            let messagesHTML = '';
+            messages.forEach(message => {
+                messagesHTML += `
+      <div class="mb-3 ${message.isBot ? 'text-left' : 'text-right'} animate-fadeIn">
+        <div class="flex ${message.isBot ? 'flex-row' : 'flex-row-reverse'} items-end">
+          ${message.isBot ? `
+            <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+              <div class="w-full h-full relative flex items-center justify-center">
+                <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                  <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          <div class="inline-block p-3 rounded-lg max-w-[80%] ${
+                    message.isBot
+                        ? 'bg-gray-100 text-black border border-gray-200'
+                        : 'bg-gray-800 text-white'
+                } shadow-md">
+            ${message.text}
+          </div>
+        </div>
+      </div>
+    `;
+            });
+
+            // Add typing indicator if needed
+            if (isTyping) {
+                messagesHTML += `
+      <div class="text-left mb-3 animate-fadeIn">
+        <div class="flex flex-row items-end">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="animation-delay: 0.3s; background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inline-block p-3 rounded-lg bg-gray-100 text-black border border-gray-200">
+            <div class="flex space-x-1">
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+            }
+
+            // Generate quick question buttons
+            let quickQuestionsHTML = '';
+            quickQuestions.forEach(question => {
+                quickQuestionsHTML += `
+      <button class="quick-question text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-full px-3 py-1 text-gray-700 transition-colors duration-200 mb-1 mr-1">
+        ${question}
+      </button>
+    `;
+            });
+
+            chatContainer.innerHTML = `
+    <div class="bg-white rounded-lg shadow-xl w-80 md:w-96 overflow-hidden flex flex-col animate-fadeIn border border-gray-200">
+      <div class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="font-bold">Ageli - Fog & Flame Assistant</span>
+        </div>
+        <button id="close-chat-btn" class="text-white hover:text-gray-300 transition-colors duration-200">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div id="chat-messages" class="h-64 overflow-y-auto p-4 bg-white">
+        ${messagesHTML}
+      </div>
+
+      <div class="border-t border-gray-200">
+        <div class="p-2">
+          <div class="flex flex-wrap gap-1 mb-2">
+            ${quickQuestionsHTML}
+          </div>
+          <form id="chat-form" class="flex items-center">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your question here..."
+              class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+            <button
+              type="submit"
+              class="bg-gray-800 text-white p-2 rounded-r-lg hover:bg-gray-700 transition-colors duration-200"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+
+            // Add event listeners
+            document.getElementById('close-chat-btn').addEventListener('click', () => {
+                toggleChat();
+            });
+
+            document.getElementById('chat-form').addEventListener('submit', handleSubmit);
+
+            // Add event listeners to quick questions
+            document.querySelectorAll('.quick-question').forEach(button => {
+                button.addEventListener('click', () => handleQuickQuestion(button.textContent.trim()));
+            });
+
+            // Scroll to bottom of messages
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Toggle chat open/closed
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                renderChatInterface();
+                // Hide Ageli when chat is open
+                ageli.style.display = 'none';
+            } else {
+                renderChatButton();
+                // Show Ageli when chat is closed
+                ageli.style.display = 'block';
+            }
+        }
+
+        // Handle user message submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            // Add user message
+            messages.push({ id: messages.length + 1, text: message, isBot: false });
+            input.value = '';
+
+            // Re-render and process bot response
+            renderChatInterface();
+            handleBotResponse(message);
+        }
+
+        // Handle quick question selection
+        function handleQuickQuestion(question) {
+            messages.push({ id: messages.length + 1, text: question, isBot: false });
+            renderChatInterface();
+            handleBotResponse(question);
+        }
+
+        // Process bot response
+        function handleBotResponse(userMessage) {
+            isTyping = true;
+            renderChatInterface();
+
+            // Simulate typing delay
+            setTimeout(() => {
+                isTyping = false;
+
+                // Generate response based on user message
+                let botResponse;
+                const lowerCaseMessage = userMessage.toLowerCase();
+
+                if (lowerCaseMessage.includes('hour') || lowerCaseMessage.includes('open')) {
+                    botResponse = "Fog & Flame is open Tuesday to Sunday from 11:00 AM to 10:00 PM. We're closed on Mondays for maintenance and preparation.";
+                } else if (lowerCaseMessage.includes('reservation') || lowerCaseMessage.includes('book') || lowerCaseMessage.includes('table')) {
+                    botResponse = "I'd be delighted to help with a reservation. You can book through our website's reservation page, or by calling us at (555) 123-4567. Weekend bookings should ideally be made 48 hours in advance.";
+                } else if (lowerCaseMessage.includes('menu') || lowerCaseMessage.includes('food') || lowerCaseMessage.includes('dish')) {
+                    botResponse = "The Fog & Flame menu features an exquisite fusion of international cuisines prepared with locally-sourced ingredients. Our renowned chef's specialties include our signature Gourmet Pasta, artisanal Sushi selection, and award-winning desserts.";
+                } else if (lowerCaseMessage.includes('location') || lowerCaseMessage.includes('address') || lowerCaseMessage.includes('where')) {
+                    botResponse = "Fog & Flame is located at 123 Borough High Street, Gourmet District, London SE1. We're conveniently situated just a 5-minute walk from London Bridge Station.";
+                } else if (lowerCaseMessage.includes('price') || lowerCaseMessage.includes('cost') || lowerCaseMessage.includes('expensive')) {
+                    botResponse = "Our main courses range from $18 to $35, with appetizers from $8 to $15. I would recommend our price-fixed tasting menu at $55 per person which includes an appetizer, main course, and dessert - excellent value for the experience.";
+                } else if (lowerCaseMessage.includes('special') || lowerCaseMessage.includes('event')) {
+                    botResponse = "We offer bespoke event hosting for parties of 8 or more. Our chef also prepares seasonal tasting menus and hosts monthly culinary experiences. May I suggest joining our mailing list for updates on upcoming special events?";
+                } else if (lowerCaseMessage.includes('allerg') || lowerCaseMessage.includes('dietary') || lowerCaseMessage.includes('vegan') || lowerCaseMessage.includes('vegetarian')) {
+                    botResponse = "We accommodate all dietary requirements including vegetarian, vegan, gluten-free options, and food allergies. Our chef takes great pride in creating exceptional dishes for every guest, regardless of dietary restrictions.";
+                } else {
+                    botResponse = "It's my pleasure to assist you with your inquiry about Fog & Flame. Is there something specific about our menu, reservations, special events, or location that I can help clarify for you?";
+                }
+
+                messages.push({ id: messages.length + 1, text: botResponse, isBot: true });
+                renderChatInterface();
+            }, 1500);
+        }
+
+        // Get random speech for Ageli
+        function getRandomSpeech() {
+            const phrases = [
+                "Need assistance with Fog & Flame?",
+                "Would you like to make a reservation?",
+                "May I help you today?",
+                "Questions about our menu?",
+                "Hi there! I'm Ageli!",
+                "Looking for dining options?",
+                "Need recommendations?",
+                "Can I suggest our chef's specials?",
+                "Welcome to Fog & Flame!",
+                "How may I assist you today?",
+                "Our specials today are amazing!",
+                "Can I help with your reservation?"
+            ];
+            return phrases[Math.floor(Math.random() * phrases.length)];
+        }
+
+        // Show speech bubble
+        function showSpeechBubble() {
+            // Only show speech bubble if permanent caption is not visible
+            if (!permanentCaptionVisible) {
+                speechBubbleVisible = true;
+                renderAgeli();
+
+                // Hide speech bubble after a few seconds
+                clearTimeout(speechTimeout);
+                speechTimeout = setTimeout(() => {
+                    speechBubbleVisible = false;
+                    renderAgeli();
+                }, 5000);
+            }
+        }
+
+        // Initialize
+        renderAgeli();
+        renderChatButton();
+
+        // Add click event to Ageli
+        ageli.addEventListener('click', function() {
+            clearTimeout(speechTimeout);
+            speechBubbleVisible = false;
+            permanentCaptionVisible = false; // Hide permanent caption when clicked
+            renderAgeli();
+            if (!isOpen) {
+                toggleChat();
+            } else {
+                // If chat is already open, hide it
+                toggleChat();
+            }
+        });
+
+        // Show initial speech bubble after a delay
+        setTimeout(showSpeechBubble, 2000);
+
+        // Periodically show speech bubbles
+        setInterval(() => {
+            if (!isOpen && Math.random() > 0.7) {
+                showSpeechBubble();
+            }
+        }, 15000);
+    });
+</script>
+</body>
+</html>

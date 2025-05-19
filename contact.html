@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Fog & Flame</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+        }
+
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://public.readdy.ai/ai/img_res/fd404799a24fa3757f864b9d52a746c4.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .input-effect {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-effect input, .input-effect textarea {
+            border: 0;
+            padding: 12px 0;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            width: 100%;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-effect input:focus, .input-effect textarea:focus {
+            outline: none;
+            border-bottom: 1px solid #000;
+        }
+
+        .input-effect label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: #999;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input-effect input:focus ~ label,
+        .input-effect input:valid ~ label,
+        .input-effect textarea:focus ~ label,
+        .input-effect textarea:valid ~ label {
+            top: -15px;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .contact-card {
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .custom-btn {
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .custom-btn:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .custom-btn:hover:after {
+            height: 100%;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#01060c",
+                        secondary: "#4B5563",
+                        accent: "#0c0000",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50">
+<header class="fixed top-0 left-0 right-0 bg-primary z-50">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <span class="logo text-2xl text-white">Fog & Flame</span>
+        <nav class="hidden md:flex gap-8">
+            <a href="HomePage.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+            <a href="reservationPage.html" class="text-gray-300 hover:text-white transition-colors">Reservation</a>
+            <a href="contact.html" class="text-white border-b-2 border-white pb-1">Contact</a>
+        </nav>
+        <button class="md:hidden text-white">
+            <i class="ri-menu-line text-2xl"></i>
+        </button>
+    </div>
+</header>
+<!-- Hero Section -->
+<section class="hero-image w-full h-64 md:h-96 flex items-center justify-center">
+    <div class="text-center">
+        <h1 class="heading text-white text-4xl md:text-5xl font-bold">Get in Touch</h1>
+        <p class="text-gray-200 mt-4 max-w-xl mx-auto px-4">We'd love to hear from you. Whether you have a question about our menu, need to make a reservation, or want to inquire about special events.</p>
+    </div>
+</section>
+
+<main class="py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Contact Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="contact-card bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="ri-map-pin-2-line text-2xl text-primary"></i>
+                </div>
+                <h3 class="heading text-lg font-semibold mb-2">Visit Us</h3>
+                <p class="text-gray-600">123 Gourmet Street<br>London, UK</p>
+                <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-accent hover:underline">View on Map</a>
+            </div>
+
+            <div class="contact-card bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="ri-phone-line text-2xl text-primary"></i>
+                </div>
+                <h3 class="heading text-lg font-semibold mb-2">Call Us</h3>
+                <p class="text-gray-600">+44 20 1234 5678</p>
+                <p class="text-gray-500 text-sm mt-1">Mon-Sun: 10:00 - 22:00</p>
+                <a href="tel:+442012345678" class="inline-block mt-4 text-accent hover:underline">Call Now</a>
+            </div>
+
+            <div class="contact-card bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="ri-mail-line text-2xl text-primary"></i>
+                </div>
+                <h3 class="heading text-lg font-semibold mb-2">Email Us</h3>
+                <p class="text-gray-600">fogandflame@restaurant.com</p>
+                <p class="text-gray-500 text-sm mt-1">We'll respond within 24 hours</p>
+                <a href="mailto:fogandflame@restaurant.com" class="inline-block mt-4 text-accent hover:underline">Send Email</a>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-8 md:p-12">
+                    <h2 class="heading text-2xl font-semibold mb-8">Send Us a Message</h2>
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="1eda9ba9-2c08-4abf-8464-3a1c0406f7d5">
+                        <!-- Optional Hidden Fields -->
+                        <input type="hidden" name="subject" value="New Message from Fog & Flame Contact Form">
+                        <input type="hidden" name="from_name" value="Fog & Flame Contact Form">
+                        <input type="checkbox" name="botcheck" style="display: none;">
+
+                        <!-- Form Fields -->
+                        <div class="input-effect">
+                            <input type="text" id="name" name="name" required>
+                            <label>Full Name</label>
+                        </div>
+
+                        <div class="input-effect">
+                            <input type="email" id="email" name="email" required>
+                            <label>Email Address</label>
+                        </div>
+
+                        <div class="input-effect">
+                            <input type="tel" id="phone" name="phone">
+                            <label>Phone Number (Optional)</label>
+                        </div>
+
+                        <div class="input-effect">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label>Your Message</label>
+                        </div>
+
+                        <div class="flex items-center mb-8">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="mr-2">
+                            <label for="newsletter" class="text-gray-600 text-sm">Subscribe to our newsletter for special offers</label>
+                        </div>
+
+                        <button type="submit" class="custom-btn bg-primary text-white py-3 px-8 rounded-full font-medium hover:shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-gray-100 p-8 md:p-12 flex flex-col justify-between">
+                    <div>
+                        <h2 class="heading text-2xl font-semibold mb-6">Visit Our Restaurant</h2>
+                        <div class="space-y-4 mb-8">
+                            <p class="text-gray-700">Experience the unique ambiance and exquisite cuisine at Fog & Flame, where culinary art meets exceptional hospitality.</p>
+
+                            <div>
+                                <h3 class="font-semibold mb-2">Opening Hours</h3>
+                                <div class="grid grid-cols-2 gap-2 text-gray-600">
+                                    <div>Monday - Friday</div>
+                                    <div>12:00 - 23:00</div>
+                                    <div>Saturday</div>
+                                    <div>12:00 - 00:00</div>
+                                    <div>Sunday</div>
+                                    <div>12:00 - 22:00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-2">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                    <i class="ri-facebook-fill text-primary"></i>
+                                </a>
+                                <a href="#" class="bg-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                    <i class="ri-instagram-line text-primary"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <a href="/reservation" class="inline-block bg-accent text-white py-3 px-8 rounded-full font-medium hover:bg-accent/90 transition-colors">
+                            Make a Reservation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="mt-16 rounded-lg overflow-hidden shadow-md h-96 relative">
+            <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Location Map" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                <div class="text-center text-white p-8">
+                    <h3 class="heading text-3xl font-semibold mb-4">Find Us</h3>
+                    <p class="mb-6">123 Gourmet Street, London, UK</p>
+                    <a href="https://maps.google.com" target="_blank" class="inline-block bg-white text-primary py-3 px-8 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section. -->
+        <div class="mt-16">
+            <h2 class="heading text-3xl font-semibold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="heading text-lg font-semibold mb-3">Do you offer private dining?</h3>
+                    <p class="text-gray-600">Yes, we offer private dining options for special occasions. Please contact us for more information about our private dining rooms and catering services.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="heading text-lg font-semibold mb-3">Can I make changes to my reservation?</h3>
+                    <p class="text-gray-600">Yes, you can modify your reservation up to 24 hours before your scheduled time. Please call us or use our online booking system.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="heading text-lg font-semibold mb-3">Do you cater to dietary restrictions?</h3>
+                    <p class="text-gray-600">Absolutely! We can accommodate various dietary needs including vegetarian, vegan, gluten-free, and allergen-specific requests. Please inform us when making your reservation.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="heading text-lg font-semibold mb-3">Is there a dress code?</h3>
+                    <p class="text-gray-600">We maintain a smart casual dress code. While formal attire is not required, we ask that guests refrain from wearing athletic wear, beachwear, or overly casual clothing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-primary text-white pt-12 pb-6">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <h3 class="logo text-2xl mb-4">Fog & Flame</h3>
+                <p class="text-gray-300 mb-4">A culinary journey through modern and traditional flavors in the heart of London.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="/menu" class="text-gray-300 hover:text-white transition-colors">Menu</a></li>
+                    <li><a href="/reservation" class="text-gray-300 hover:text-white transition-colors">Reservation</a></li>
+                    <li><a href="/contact" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-lg mb-4">Contact Info</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-center gap-2">
+                        <i class="ri-map-pin-2-line"></i>
+                        <span>123 Gourmet Street, London, UK</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="ri-phone-line"></i>
+                        <span>+44 20 1234 5678</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="ri-mail-line"></i>
+                        <span>fogandflame@restaurant.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-lg mb-4">Newsletter</h3>
+                <p class="text-gray-300 mb-4">Subscribe to our newsletter for special offers and updates.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md text-gray-800 w-full focus:outline-none">
+                    <button type="submit" class="bg-accent px-4 py-2 rounded-r-md hover:bg-accent/80 transition-colors">
+                        <i class="ri-send-plane-fill"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm">© 2023 Fog & Flame. All Rights Reserved.</p>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Success Modal -->
+<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-green-100 rounded-full">
+                <i class="ri-check-line text-green-500 text-3xl"></i>
+            </div>
+            <h3 class="heading text-xl font-semibold mb-2">Message Sent Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for reaching out. We'll get back to you as soon as possible.</p>
+            <button onclick="closeModal()" class="custom-btn bg-primary text-white py-2 px-6 rounded-full hover:shadow-lg transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeModal() {
+        document.getElementById("successModal").classList.add("hidden");
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        // Show loading state
+        const submitButton = this.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.innerHTML = "Sending...";
+
+        // Submit the form to Web3Forms
+        const formData = new FormData(this);
+        fetch(this.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                Accept: "application/json",
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success modal
+                    document.getElementById("successModal").classList.remove("hidden");
+                    this.reset();
+
+                    // Reset form labels
+                    const labels = document.querySelectorAll('.input-effect label');
+                    labels.forEach(label => {
+                        label.style.top = '10px';
+                        label.style.fontSize = '16px';
+                        label.style.color = '#999';
+                    });
+                } else {
+                    alert("There was an error submitting the form. Please try again.");
+                }
+            })
+            .catch(error => {
+                alert("There was an error submitting the form. Please try again.");
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = "Send Message";
+            });
+    });
+
+    // Handle input focus for floating labels
+    const inputs = document.querySelectorAll('.input-effect input, .input-effect textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.nextElementSibling.style.top = '-15px';
+            this.nextElementSibling.style.fontSize = '12px';
+            this.nextElementSibling.style.color = '#000';
+        });
+
+        input.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.nextElementSibling.style.top = '10px';
+                this.nextElementSibling.style.fontSize = '16px';
+                this.nextElementSibling.style.color = '#999';
+            }
+        });
+
+        // Initialize for any pre-filled inputs
+        if (input.value !== '') {
+            input.nextElementSibling.style.top = '-15px';
+            input.nextElementSibling.style.fontSize = '12px';
+            input.nextElementSibling.style.color = '#000';
+        }
+    });
+
+
+    // Replace the existing AI Assistant Chat Implementation section with this code
+    // AI Assistant Chat Implementation with Fixed Robot - Ageli
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create the chat container
+        const chatContainer = document.createElement('div');
+        chatContainer.id = 'restaurant-assistant';
+        chatContainer.className = 'fixed right-0 bottom-0 z-50 mr-4 mb-4';
+        document.body.appendChild(chatContainer);
+
+        // Create Ageli container with fixed positioning
+        const ageli = document.createElement('div');
+        ageli.id = 'ageli-robot';
+        ageli.style.position = 'fixed';
+        ageli.style.right = '20px';
+        ageli.style.bottom = '20px';
+        ageli.style.zIndex = '1000';
+        ageli.style.width = '90px';
+        ageli.style.cursor = 'pointer';
+        document.body.appendChild(ageli);
+
+        // Initial state
+        let isOpen = false;
+        let messages = [
+            { id: 1, text: "Hello! I'm Ageli, your personal Fog & Flame assistant. How may I be of service today?", isBot: true }
+        ];
+        let isTyping = false;
+        let speechBubbleVisible = false;
+        let permanentCaptionVisible = true; // New state for permanent caption
+        let speechTimeout = null;
+
+        // Quick questions
+        const quickQuestions = [
+            "What are your hours?",
+            "How can I make a reservation?",
+            "Tell me about your menu",
+            "Where are you located?"
+        ];
+
+        // Add styles for Ageli
+        const style = document.createElement('style');
+        style.textContent = `
+  @keyframes eyeGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 20px #00b7ff; opacity: 1; }
+  }
+
+  @keyframes chestGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 15px #00b7ff; opacity: 1; }
+  }
+
+  #ageli-robot {
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover {
+    transform: scale(1.05);
+  }
+
+  .ageli-speech-bubble {
+    position: absolute;
+    top: -80px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 220px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    animation: bubblePulse 2s infinite;
+  }
+
+  @keyframes bubblePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .ageli-speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .ageli-permanent-caption {
+    position: absolute;
+    top: -70px;
+    left: -150px; /* Changed from 5% to -150px to move it far left */
+    transform: translateX(0); /* Removed the -50% transformation */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    text-align: left;
+    animation: bubblePulse 2s infinite;
+  }
+
+  .ageli-permanent-caption:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 90%; /* Changed from 30% to 90% to position the pointer near the right */
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .robot-head {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: inset 0 -2px 6px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover .robot-head {
+    transform: scale(1.05);
+  }
+
+  .robot-face {
+    position: absolute;
+    background: #111;
+    width: 55px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 70% 70% 60% 60% / 80% 80% 40% 40%;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  }
+
+  .robot-eyes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .robot-eye {
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    background: #00b7ff;
+    border-radius: 50%;
+    animation: eyeGlow 3s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .robot-eye::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+
+  .robot-body {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    width: 65px;
+    height: 80px;
+    margin: -5px auto 0;
+    position: relative;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1010;
+  }
+
+  .robot-chest-light {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00b7ff;
+    border-radius: 50%;
+    left: 50%;
+    top: 33%;
+    transform: translate(-50%, -50%);
+    animation: chestGlow 2s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+  }
+
+  .robot-detail {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d0d0d0;
+    border-radius: 50%;
+    border: 1px solid #c0c0c0;
+  }
+
+  .detail-left {
+    left: 25%;
+    top: 50%;
+  }
+
+  .detail-right {
+    right: 25%;
+    top: 50%;
+  }
+
+  .detail-bottom {
+    width: 16px;
+    height: 2px;
+    left: 50%;
+    bottom: 25%;
+    transform: translateX(-50%);
+  }
+
+  /* Robot arms and hands */
+  .robot-arm {
+    position: absolute;
+    width: 12px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    top: 15px;
+    transform-origin: top center;
+    z-index: 1020;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .robot-arm-right {
+    right: -10px;
+    animation: armWavingRight 1.5s infinite;
+  }
+
+  .robot-arm-left {
+    left: -10px;
+    animation: armWavingLeft 1.5s infinite;
+  }
+
+  .robot-hand {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    bottom: -10px;
+    z-index: 1020;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  }
+
+  .robot-hand-right {
+    left: -4px;
+  }
+
+  .robot-hand-left {
+    right: -4px;
+  }
+
+  @keyframes armWavingRight {
+    0%, 100% { transform: rotate(30deg); }
+    25% { transform: rotate(60deg); }
+    50% { transform: rotate(30deg); }
+    75% { transform: rotate(60deg); }
+  }
+
+  @keyframes armWavingLeft {
+    0%, 100% { transform: rotate(-30deg); }
+    25% { transform: rotate(-60deg); }
+    50% { transform: rotate(-30deg); }
+    75% { transform: rotate(-60deg); }
+  }
+
+  .robot-finger {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+  }
+`;
+        document.head.appendChild(style);
+
+        // Render Ageli robot
+        function renderAgeli() {
+            ageli.innerHTML = `
+    <div class="relative">
+      ${permanentCaptionVisible ? `
+        <div class="ageli-permanent-caption">
+          Hi, I'm Ageli! Do you need help?
+        </div>
+      ` : ''}
+
+      ${speechBubbleVisible && !permanentCaptionVisible ? `
+        <div class="ageli-speech-bubble">
+          ${getRandomSpeech()}
+        </div>
+      ` : ''}
+
+      <!-- Robot Head -->
+      <div class="robot-head">
+        <div class="robot-face">
+          <div class="robot-eyes">
+            <div class="robot-eye"></div>
+            <div class="robot-eye"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robot Body -->
+      <div class="robot-body">
+        <div class="robot-chest-light"></div>
+        <div class="robot-detail detail-left"></div>
+        <div class="robot-detail detail-right"></div>
+        <div class="robot-detail detail-bottom"></div>
+        <div class="robot-arm robot-arm-right">
+          <div class="robot-hand robot-hand-right">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; left: 8px;"></div>
+          </div>
+        </div>
+        <div class="robot-arm robot-arm-left">
+          <div class="robot-hand robot-hand-left">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; right: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+        }
+
+        // Render the chat button (closed state)
+        function renderChatButton() {
+            // Empty implementation - no chat button displayed
+            chatContainer.innerHTML = '';
+        }
+
+        // Render the chat interface (open state)
+        function renderChatInterface() {
+            let messagesHTML = '';
+            messages.forEach(message => {
+                messagesHTML += `
+      <div class="mb-3 ${message.isBot ? 'text-left' : 'text-right'} animate-fadeIn">
+        <div class="flex ${message.isBot ? 'flex-row' : 'flex-row-reverse'} items-end">
+          ${message.isBot ? `
+            <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+              <div class="w-full h-full relative flex items-center justify-center">
+                <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                  <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          <div class="inline-block p-3 rounded-lg max-w-[80%] ${
+                    message.isBot
+                        ? 'bg-gray-100 text-black border border-gray-200'
+                        : 'bg-gray-800 text-white'
+                } shadow-md">
+            ${message.text}
+          </div>
+        </div>
+      </div>
+    `;
+            });
+
+            // Add typing indicator if needed
+            if (isTyping) {
+                messagesHTML += `
+      <div class="text-left mb-3 animate-fadeIn">
+        <div class="flex flex-row items-end">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="animation-delay: 0.3s; background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inline-block p-3 rounded-lg bg-gray-100 text-black border border-gray-200">
+            <div class="flex space-x-1">
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+            }
+
+            // Generate quick question buttons
+            let quickQuestionsHTML = '';
+            quickQuestions.forEach(question => {
+                quickQuestionsHTML += `
+      <button class="quick-question text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-full px-3 py-1 text-gray-700 transition-colors duration-200 mb-1 mr-1">
+        ${question}
+      </button>
+    `;
+            });
+
+            chatContainer.innerHTML = `
+    <div class="bg-white rounded-lg shadow-xl w-80 md:w-96 overflow-hidden flex flex-col animate-fadeIn border border-gray-200">
+      <div class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="font-bold">Ageli - Fog & Flame Assistant</span>
+        </div>
+        <button id="close-chat-btn" class="text-white hover:text-gray-300 transition-colors duration-200">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div id="chat-messages" class="h-64 overflow-y-auto p-4 bg-white">
+        ${messagesHTML}
+      </div>
+
+      <div class="border-t border-gray-200">
+        <div class="p-2">
+          <div class="flex flex-wrap gap-1 mb-2">
+            ${quickQuestionsHTML}
+          </div>
+          <form id="chat-form" class="flex items-center">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your question here..."
+              class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+            <button
+              type="submit"
+              class="bg-gray-800 text-white p-2 rounded-r-lg hover:bg-gray-700 transition-colors duration-200"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+
+            // Add event listeners
+            document.getElementById('close-chat-btn').addEventListener('click', () => {
+                toggleChat();
+            });
+
+            document.getElementById('chat-form').addEventListener('submit', handleSubmit);
+
+            // Add event listeners to quick questions
+            document.querySelectorAll('.quick-question').forEach(button => {
+                button.addEventListener('click', () => handleQuickQuestion(button.textContent.trim()));
+            });
+
+            // Scroll to bottom of messages
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Toggle chat open/closed
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                renderChatInterface();
+                // Hide Ageli when chat is open
+                ageli.style.display = 'none';
+            } else {
+                renderChatButton();
+                // Show Ageli when chat is closed
+                ageli.style.display = 'block';
+            }
+        }
+
+        // Handle user message submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            // Add user message
+            messages.push({ id: messages.length + 1, text: message, isBot: false });
+            input.value = '';
+
+            // Re-render and process bot response
+            renderChatInterface();
+            handleBotResponse(message);
+        }
+
+        // Handle quick question selection
+        function handleQuickQuestion(question) {
+            messages.push({ id: messages.length + 1, text: question, isBot: false });
+            renderChatInterface();
+            handleBotResponse(question);
+        }
+
+        // Process bot response
+        function handleBotResponse(userMessage) {
+            isTyping = true;
+            renderChatInterface();
+
+            // Simulate typing delay
+            setTimeout(() => {
+                isTyping = false;
+
+                // Generate response based on user message
+                let botResponse;
+                const lowerCaseMessage = userMessage.toLowerCase();
+
+                if (lowerCaseMessage.includes('hour') || lowerCaseMessage.includes('open')) {
+                    botResponse = "Fog & Flame is open Tuesday to Sunday from 11:00 AM to 10:00 PM. We're closed on Mondays for maintenance and preparation.";
+                } else if (lowerCaseMessage.includes('reservation') || lowerCaseMessage.includes('book') || lowerCaseMessage.includes('table')) {
+                    botResponse = "I'd be delighted to help with a reservation. You can book through our website's reservation page, or by calling us at (555) 123-4567. Weekend bookings should ideally be made 48 hours in advance.";
+                } else if (lowerCaseMessage.includes('menu') || lowerCaseMessage.includes('food') || lowerCaseMessage.includes('dish')) {
+                    botResponse = "The Fog & Flame menu features an exquisite fusion of international cuisines prepared with locally-sourced ingredients. Our renowned chef's specialties include our signature Gourmet Pasta, artisanal Sushi selection, and award-winning desserts.";
+                } else if (lowerCaseMessage.includes('location') || lowerCaseMessage.includes('address') || lowerCaseMessage.includes('where')) {
+                    botResponse = "Fog & Flame is located at 123 Borough High Street, Gourmet District, London SE1. We're conveniently situated just a 5-minute walk from London Bridge Station.";
+                } else if (lowerCaseMessage.includes('price') || lowerCaseMessage.includes('cost') || lowerCaseMessage.includes('expensive')) {
+                    botResponse = "Our main courses range from $18 to $35, with appetizers from $8 to $15. I would recommend our price-fixed tasting menu at $55 per person which includes an appetizer, main course, and dessert - excellent value for the experience.";
+                } else if (lowerCaseMessage.includes('special') || lowerCaseMessage.includes('event')) {
+                    botResponse = "We offer bespoke event hosting for parties of 8 or more. Our chef also prepares seasonal tasting menus and hosts monthly culinary experiences. May I suggest joining our mailing list for updates on upcoming special events?";
+                } else if (lowerCaseMessage.includes('allerg') || lowerCaseMessage.includes('dietary') || lowerCaseMessage.includes('vegan') || lowerCaseMessage.includes('vegetarian')) {
+                    botResponse = "We accommodate all dietary requirements including vegetarian, vegan, gluten-free options, and food allergies. Our chef takes great pride in creating exceptional dishes for every guest, regardless of dietary restrictions.";
+                } else {
+                    botResponse = "It's my pleasure to assist you with your inquiry about Fog & Flame. Is there something specific about our menu, reservations, special events, or location that I can help clarify for you?";
+                }
+
+                messages.push({ id: messages.length + 1, text: botResponse, isBot: true });
+                renderChatInterface();
+            }, 1500);
+        }
+
+        // Get random speech for Ageli
+        function getRandomSpeech() {
+            const phrases = [
+                "Need assistance with Fog & Flame?",
+                "Would you like to make a reservation?",
+                "May I help you today?",
+                "Questions about our menu?",
+                "Hi there! I'm Ageli!",
+                "Looking for dining options?",
+                "Need recommendations?",
+                "Can I suggest our chef's specials?",
+                "Welcome to Fog & Flame!",
+                "How may I assist you today?",
+                "Our specials today are amazing!",
+                "Can I help with your reservation?"
+            ];
+            return phrases[Math.floor(Math.random() * phrases.length)];
+        }
+
+        // Show speech bubble
+        function showSpeechBubble() {
+            // Only show speech bubble if permanent caption is not visible
+            if (!permanentCaptionVisible) {
+                speechBubbleVisible = true;
+                renderAgeli();
+
+                // Hide speech bubble after a few seconds
+                clearTimeout(speechTimeout);
+                speechTimeout = setTimeout(() => {
+                    speechBubbleVisible = false;
+                    renderAgeli();
+                }, 5000);
+            }
+        }
+
+        // Initialize
+        renderAgeli();
+        renderChatButton();
+
+        // Add click event to Ageli
+        ageli.addEventListener('click', function() {
+            clearTimeout(speechTimeout);
+            speechBubbleVisible = false;
+            permanentCaptionVisible = false; // Hide permanent caption when clicked
+            renderAgeli();
+            if (!isOpen) {
+                toggleChat();
+            } else {
+                // If chat is already open, hide it
+                toggleChat();
+            }
+        });
+
+        // Show initial speech bubble after a delay
+        setTimeout(showSpeechBubble, 2000);
+
+        // Periodically show speech bubbles
+        setInterval(() => {
+            if (!isOpen && Math.random() > 0.7) {
+                showSpeechBubble();
+            }
+        }, 15000);
+    });
+</script>
+</body>
+</html>

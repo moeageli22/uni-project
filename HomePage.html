@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Fog &amp; Flame</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <style>
+
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    /* Add these styles to your existing CSS */
+
+    .flame-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flame-base {
+      position: absolute;
+      bottom: 0;
+      width: 16px;
+      height: 20px;
+      background: #ff5722;
+      border-radius: 50% 50% 35% 35% / 50% 50% 50% 50%;
+      box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+      animation: flicker 0.8s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+
+    .flame-middle {
+      position: absolute;
+      bottom: 2px;
+      width: 14px;
+      height: 18px;
+      background: #ff9800;
+      border-radius: 50% 50% 35% 35% / 50% 50% 50% 50%;
+      box-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800;
+      animation: flicker 0.9s ease-in-out infinite alternate;
+      animation-delay: 0.1s;
+      z-index: 3;
+    }
+
+    .flame-top {
+      position: absolute;
+      bottom: 10px;
+      width: 10px;
+      height: 12px;
+      background: #ffeb3b;
+      border-radius: 50% 50% 35% 35% / 50% 50% 50% 50%;
+      box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+      animation: flicker 0.6s ease-in-out infinite alternate;
+      animation-delay: 0.2s;
+      z-index: 4;
+    }
+
+    @keyframes flicker {
+      0%, 100% {
+        transform: scale(1) rotate(-2deg);
+        opacity: 0.9;
+      }
+      25% {
+        transform: scale(1.05) rotate(1deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(0.95) rotate(-1deg);
+        opacity: 0.85;
+      }
+      75% {
+        transform: scale(1.05) rotate(2deg);
+        opacity: 1;
+      }
+    }
+    /* Custom animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+      }
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes rotateIn {
+      from {
+        transform: rotate(-10deg) scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s ease;
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease;
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    .animate-slideInRight {
+      animation: slideInRight 1s ease;
+    }
+
+    .animate-slideInLeft {
+      animation: slideInLeft 1s ease;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-rotateIn {
+      animation: rotateIn 0.8s ease;
+    }
+
+    .dish-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+
+    .nav-item:hover::after {
+      width: 100%;
+    }
+
+    /* Parallax effect for hero image */
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Slideshow fade transition */
+    .slide {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar -->
+<nav class="bg-black text-white p-4 flex justify-between items-center fixed w-full z-50 animate-fadeIn">
+  <div class="text-xl font-bold flex items-center">
+    <div class="flame-container mr-2 h-8 w-8 relative">
+      <div class="flame-base"></div>
+      <div class="flame-middle"></div>
+      <div class="flame-top"></div>
+    </div>
+    <span class="transform hover:scale-105 transition-transform duration-300">Fog &amp; Flame</span>
+  </div>
+  <div class="space-x-6">
+    <a class="px-4 py-2 bg-white text-black rounded-full hover:bg-gray-300 transition-colors duration-300" href="#" id="login-btn">Log in</a>
+    <a class="nav-item hover:text-gray-300 transition-colors duration-300" href="reservationPage.html">Reservations</a>
+    <a class="nav-item hover:text-gray-300 transition-colors duration-300" id="about-btn" href="AboutPage.html">About</a>
+    <a class="nav-item hover:text-gray-300 transition-colors duration-300" id="contact-btn" href="contact.html">Contact</a>
+    <a class="nav-item hover:text-gray-300 transition-colors duration-300" id="menu-btn" href="MenuPage.html">Menu</a>
+  </div>
+</nav>
+
+
+
+<!-- Spacer for fixed navbar -->
+<div class="h-16"></div>
+
+<!-- Hero Section with Slideshow -->
+<section class="relative h-[75vh] overflow-hidden" id="hero-section">
+  <!-- Slideshow container -->
+  <div class="slideshow-container h-full">
+    <img class="slide active" src="https://storage.googleapis.com/a1aa/image/8Qh6eF0osUSoMtVJ832vehzkcUK0wVvbr0k6AD454Ow.jpg" alt="Delicious gourmet dish">
+    <img class="slide" src="https://storage.googleapis.com/a1aa/image/XYDBxClEvyGeiNR_t65-ezqXRxoFA8rpRys_iysdbIM.jpg" alt="Gourmet pasta">
+    <img class="slide" src="https://storage.googleapis.com/a1aa/image/5vY1zE8MlVMnPn76SzDj88C2s46IwiExv4sXc0UsyU4.jpg" alt="Exquisite sushi">
+    <img class="slide" src="https://storage.googleapis.com/a1aa/image/JD5bT1RjOr1bL-ant-njqSRKO1V0HAGvW7_ZPztJjIo.jpg" alt="Decadent dessert">
+  </div>
+  <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white">
+    <h1 class="text-5xl font-bold mb-4 opacity-0 animate-float" id="hero-title">Welcome to Fog &amp; Flame</h1>
+    <p class="mt-2 text-xl opacity-0" id="hero-subtitle">Reserve your table now for an unforgettable dining experience.</p>
+    <button id="reserve-btn" class="mt-6 bg-black text-white py-3 px-6 rounded-full border-2 border-white hover:bg-white hover:text-black transition-all duration-300 opacity-0 focus:outline-none transform hover:scale-105">
+      Reserve a Table
+    </button>
+  </div>
+</section>3
+
+<!-- Featured Dishes Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center opacity-0" id="dishes-title">Featured Dishes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 opacity-0" id="dishes-container">
+      <!-- Dish 1 -->
+      <div class="dish-card bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="overflow-hidden h-48">
+          <img alt="A plate of gourmet pasta" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+               src="https://storage.googleapis.com/a1aa/image/XYDBxClEvyGeiNR_t65-ezqXRxoFA8rpRys_iysdbIM.jpg"/>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold">Gourmet Pasta</h3>
+          <p class="mt-3 text-gray-600">A delightful blend of flavors with freshly made pasta and organic ingredients.</p>
+          <button class="mt-4 bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">Order Now</button>
+        </div>
+      </div>
+      <!-- Dish 2 -->
+      <div class="dish-card bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="overflow-hidden h-48">
+          <img alt="A variety of exquisite sushi" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+               src="https://storage.googleapis.com/a1aa/image/5vY1zE8MlVMnPn76SzDj88C2s46IwiExv4sXc0UsyU4.jpg"/>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold">Exquisite Sushi</h3>
+          <p class="mt-3 text-gray-600">Experience the finest sushi crafted with precision and passion.</p>
+          <button class="mt-4 bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">Order Now</button>
+        </div>
+      </div>
+      <!-- Dish 3 -->
+      <div class="dish-card bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="overflow-hidden h-48">
+          <img alt="A decadent chocolate dessert" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+               src="https://storage.googleapis.com/a1aa/image/JD5bT1RjOr1bL-ant-njqSRKO1V0HAGvW7_ZPztJjIo.jpg"/>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold">Decadent Dessert</h3>
+          <p class="mt-3 text-gray-600">Indulge in a sweet finale with our luxurious chocolate creations.</p>
+          <button class="mt-4 bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:scale-105">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-8">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <p class="mb-4 md:mb-0">© 2025. All rights reserved.</p>
+      <div class="flex space-x-6">
+        <a class="text-2xl hover:text-gray-400 transition-colors duration-300 transform hover:scale-110" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="text-2xl hover:text-gray-400 transition-colors duration-300 transform hover:scale-110" href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- JavaScript -->
+<script>
+  // Animation for hero section.
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+      document.getElementById('hero-title').classList.add('animate-rotateIn');
+      document.getElementById('hero-title').style.opacity = '1';
+    }, 300);
+
+    setTimeout(() => {
+      document.getElementById('hero-subtitle').classList.add('animate-fadeInUp');
+      document.getElementById('hero-subtitle').style.opacity = '1';
+    }, 800);
+
+    setTimeout(() => {
+      const reserveBtn = document.getElementById('reserve-btn');
+      reserveBtn.classList.add('animate-fadeInUp');
+      reserveBtn.style.opacity = '1';
+
+      // Add pulse effect on hover
+      reserveBtn.addEventListener('mouseenter', function() {
+        this.classList.add('animate-pulse');
+      });
+
+      reserveBtn.addEventListener('mouseleave', function() {
+        this.classList.remove('animate-pulse');
+      });
+    }, 1200);
+
+    // Setup image slideshow
+    setupSlideshow();
+  });
+
+  // Food image slideshow function
+  function setupSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      // Hide all slides
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+
+      // Show the current slide
+      slides[index].classList.add('active');
+      slides[index].classList.add('animate-fadeIn');
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Change slide every 3 seconds
+    setInterval(nextSlide, 3000);
+  }
+
+  // Animation for dishes section with staggered animation
+  const dishesObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target.id === 'dishes-title') {
+          entry.target.classList.add('animate-fadeInUp');
+          entry.target.style.opacity = '1';
+
+          setTimeout(() => {
+            const dishesContainer = document.getElementById('dishes-container');
+            dishesContainer.style.opacity = '1';
+
+            // Staggered animation for dish cards
+            const dishCards = document.querySelectorAll('.dish-card');
+            dishCards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate-fadeInUp');
+              }, index * 200);
+            });
+          }, 400);
+        }
+        dishesObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  dishesObserver.observe(document.getElementById('dishes-title'));
+
+  // Parallax effect for hero section
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const heroSection = document.getElementById('hero-section');
+    const slides = heroSection.querySelectorAll('.slide');
+
+    slides.forEach(slide => {
+      if (slide.classList.contains('active')) {
+        slide.style.transform = `scale(${1 + scrollPosition * 0.0005}) translateY(${scrollPosition * 0.2}px)`;
+      }
+    });
+  });
+
+
+
+  // Redirections
+  document.getElementById("reserve-btn").addEventListener("click", function() {
+    window.location.href = "reservationPage.html";
+  });
+
+  document.getElementById("contact-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "contact.html";
+  });
+
+  document.getElementById("login-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "LoginPage.html";
+  });
+
+  document.getElementById("menu-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "MenuPage.html";
+  });
+
+
+
+  // Replace the existing AI Assistant Chat Implementation section with this code
+  // AI Assistant Chat Implementation with Fixed Robot - Ageli
+  document.addEventListener('DOMContentLoaded', function() {
+    // Create the chat container
+    const chatContainer = document.createElement('div');
+    chatContainer.id = 'restaurant-assistant';
+    chatContainer.className = 'fixed right-0 bottom-0 z-50 mr-4 mb-4';
+    document.body.appendChild(chatContainer);
+
+    // Create Ageli container with fixed positioning
+    const ageli = document.createElement('div');
+    ageli.id = 'ageli-robot';
+    ageli.style.position = 'fixed';
+    ageli.style.right = '20px';
+    ageli.style.bottom = '20px';
+    ageli.style.zIndex = '1000';
+    ageli.style.width = '90px';
+    ageli.style.cursor = 'pointer';
+    document.body.appendChild(ageli);
+
+    // Initial state
+    let isOpen = false;
+    let messages = [
+      { id: 1, text: "Hello! I'm Ageli, your personal Fog & Flame assistant. How may I be of service today?", isBot: true }
+    ];
+    let isTyping = false;
+    let speechBubbleVisible = false;
+    let permanentCaptionVisible = true; // New state for permanent caption
+    let speechTimeout = null;
+
+    // Quick questions
+    const quickQuestions = [
+      "What are your hours?",
+      "How can I make a reservation?",
+      "Tell me about your menu",
+      "Where are you located?"
+    ];
+
+    // Add styles for Ageli
+    const style = document.createElement('style');
+    style.textContent = `
+  @keyframes eyeGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 20px #00b7ff; opacity: 1; }
+  }
+
+  @keyframes chestGlow {
+    0%, 100% { box-shadow: 0 0 5px #00b7ff, 0 0 10px #00b7ff; opacity: 0.8; }
+    50% { box-shadow: 0 0 10px #00b7ff, 0 0 15px #00b7ff; opacity: 1; }
+  }
+
+  #ageli-robot {
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover {
+    transform: scale(1.05);
+  }
+
+  .ageli-speech-bubble {
+    position: absolute;
+    top: -80px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 220px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    animation: bubblePulse 2s infinite;
+  }
+
+  @keyframes bubblePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .ageli-speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .ageli-permanent-caption {
+    position: absolute;
+    top: -70px;
+    left: -150px; /* Changed from 5% to -150px to move it far left */
+    transform: translateX(0); /* Removed the -50% transformation */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    width: max-content;
+    max-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 183, 255, 0.5);
+    z-index: 1010;
+    text-align: left;
+    animation: bubblePulse 2s infinite;
+  }
+
+  .ageli-permanent-caption:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 90%; /* Changed from 30% to 90% to position the pointer near the right */
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.7) transparent;
+  }
+
+  .robot-head {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: inset 0 -2px 6px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  #ageli-robot:hover .robot-head {
+    transform: scale(1.05);
+  }
+
+  .robot-face {
+    position: absolute;
+    background: #111;
+    width: 55px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 70% 70% 60% 60% / 80% 80% 40% 40%;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  }
+
+  .robot-eyes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .robot-eye {
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    background: #00b7ff;
+    border-radius: 50%;
+    animation: eyeGlow 3s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .robot-eye::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+
+  .robot-body {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    width: 65px;
+    height: 80px;
+    margin: -5px auto 0;
+    position: relative;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1010;
+  }
+
+  .robot-chest-light {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00b7ff;
+    border-radius: 50%;
+    left: 50%;
+    top: 33%;
+    transform: translate(-50%, -50%);
+    animation: chestGlow 2s infinite;
+    box-shadow: 0 0 15px rgba(0, 183, 255, 0.8);
+  }
+
+  .robot-detail {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d0d0d0;
+    border-radius: 50%;
+    border: 1px solid #c0c0c0;
+  }
+
+  .detail-left {
+    left: 25%;
+    top: 50%;
+  }
+
+  .detail-right {
+    right: 25%;
+    top: 50%;
+  }
+
+  .detail-bottom {
+    width: 16px;
+    height: 2px;
+    left: 50%;
+    bottom: 25%;
+    transform: translateX(-50%);
+  }
+
+  /* Robot arms and hands */
+  .robot-arm {
+    position: absolute;
+    width: 12px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    top: 15px;
+    transform-origin: top center;
+    z-index: 1020;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .robot-arm-right {
+    right: -10px;
+    animation: armWavingRight 1.5s infinite;
+  }
+
+  .robot-arm-left {
+    left: -10px;
+    animation: armWavingLeft 1.5s infinite;
+  }
+
+  .robot-hand {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    bottom: -10px;
+    z-index: 1020;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  }
+
+  .robot-hand-right {
+    left: -4px;
+  }
+
+  .robot-hand-left {
+    right: -4px;
+  }
+
+  @keyframes armWavingRight {
+    0%, 100% { transform: rotate(30deg); }
+    25% { transform: rotate(60deg); }
+    50% { transform: rotate(30deg); }
+    75% { transform: rotate(60deg); }
+  }
+
+  @keyframes armWavingLeft {
+    0%, 100% { transform: rotate(-30deg); }
+    25% { transform: rotate(-60deg); }
+    50% { transform: rotate(-30deg); }
+    75% { transform: rotate(-60deg); }
+  }
+
+  .robot-finger {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    border-radius: 50%;
+  }
+`;
+    document.head.appendChild(style);
+
+    // Render Ageli robot
+    function renderAgeli() {
+      ageli.innerHTML = `
+    <div class="relative">
+      ${permanentCaptionVisible ? `
+        <div class="ageli-permanent-caption">
+          Hi, I'm Ageli! Do you need help?
+        </div>
+      ` : ''}
+
+      ${speechBubbleVisible && !permanentCaptionVisible ? `
+        <div class="ageli-speech-bubble">
+          ${getRandomSpeech()}
+        </div>
+      ` : ''}
+
+      <!-- Robot Head -->
+      <div class="robot-head">
+        <div class="robot-face">
+          <div class="robot-eyes">
+            <div class="robot-eye"></div>
+            <div class="robot-eye"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robot Body -->
+      <div class="robot-body">
+        <div class="robot-chest-light"></div>
+        <div class="robot-detail detail-left"></div>
+        <div class="robot-detail detail-right"></div>
+        <div class="robot-detail detail-bottom"></div>
+        <div class="robot-arm robot-arm-right">
+          <div class="robot-hand robot-hand-right">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; left: 8px;"></div>
+          </div>
+        </div>
+        <div class="robot-arm robot-arm-left">
+          <div class="robot-hand robot-hand-left">
+            <div class="robot-finger" style="top: 5px; left: 4px;"></div>
+            <div class="robot-finger" style="top: 5px; right: 4px;"></div>
+            <div class="robot-finger" style="bottom: 5px; right: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    // Render the chat button (closed state)
+    function renderChatButton() {
+      // Empty implementation - no chat button displayed
+      chatContainer.innerHTML = '';
+    }
+
+    // Render the chat interface (open state)
+    function renderChatInterface() {
+      let messagesHTML = '';
+      messages.forEach(message => {
+        messagesHTML += `
+      <div class="mb-3 ${message.isBot ? 'text-left' : 'text-right'} animate-fadeIn">
+        <div class="flex ${message.isBot ? 'flex-row' : 'flex-row-reverse'} items-end">
+          ${message.isBot ? `
+            <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+              <div class="w-full h-full relative flex items-center justify-center">
+                <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                  <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          <div class="inline-block p-3 rounded-lg max-w-[80%] ${
+                message.isBot
+                        ? 'bg-gray-100 text-black border border-gray-200'
+                        : 'bg-gray-800 text-white'
+        } shadow-md">
+            ${message.text}
+          </div>
+        </div>
+      </div>
+    `;
+      });
+
+      // Add typing indicator if needed
+      if (isTyping) {
+        messagesHTML += `
+      <div class="text-left mb-3 animate-fadeIn">
+        <div class="flex flex-row items-end">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="animation-delay: 0.3s; background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inline-block p-3 rounded-lg bg-gray-100 text-black border border-gray-200">
+            <div class="flex space-x-1">
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+              <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+      }
+
+      // Generate quick question buttons
+      let quickQuestionsHTML = '';
+      quickQuestions.forEach(question => {
+        quickQuestionsHTML += `
+      <button class="quick-question text-xs bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-full px-3 py-1 text-gray-700 transition-colors duration-200 mb-1 mr-1">
+        ${question}
+      </button>
+    `;
+      });
+
+      chatContainer.innerHTML = `
+    <div class="bg-white rounded-lg shadow-xl w-80 md:w-96 overflow-hidden flex flex-col animate-fadeIn border border-gray-200">
+      <div class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-8 h-8 mr-2 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f0f0f0, #e0e0e0); border: 1px solid #d0d0d0;">
+            <div class="w-full h-full relative flex items-center justify-center">
+              <div class="w-6 h-3 bg-black rounded-full absolute" style="top: 30%;">
+                <div class="flex justify-center space-x-1 w-full absolute" style="top: 50%; transform: translateY(-50%)">
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: #00b7ff; box-shadow: 0 0 5px #00b7ff;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="font-bold">Ageli - Fog & Flame Assistant</span>
+        </div>
+        <button id="close-chat-btn" class="text-white hover:text-gray-300 transition-colors duration-200">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div id="chat-messages" class="h-64 overflow-y-auto p-4 bg-white">
+        ${messagesHTML}
+      </div>
+
+      <div class="border-t border-gray-200">
+        <div class="p-2">
+          <div class="flex flex-wrap gap-1 mb-2">
+            ${quickQuestionsHTML}
+          </div>
+          <form id="chat-form" class="flex items-center">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your question here..."
+              class="flex-1 border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+            />
+            <button
+              type="submit"
+              class="bg-gray-800 text-white p-2 rounded-r-lg hover:bg-gray-700 transition-colors duration-200"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+
+      // Add event listeners
+      document.getElementById('close-chat-btn').addEventListener('click', () => {
+        toggleChat();
+      });
+
+      document.getElementById('chat-form').addEventListener('submit', handleSubmit);
+
+      // Add event listeners to quick questions
+      document.querySelectorAll('.quick-question').forEach(button => {
+        button.addEventListener('click', () => handleQuickQuestion(button.textContent.trim()));
+      });
+
+      // Scroll to bottom of messages
+      const chatMessages = document.getElementById('chat-messages');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Toggle chat open/closed
+    function toggleChat() {
+      isOpen = !isOpen;
+      if (isOpen) {
+        renderChatInterface();
+        // Hide Ageli when chat is open
+        ageli.style.display = 'none';
+      } else {
+        renderChatButton();
+        // Show Ageli when chat is closed
+        ageli.style.display = 'block';
+      }
+    }
+
+    // Handle user message submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const message = input.value.trim();
+
+      if (message === '') return;
+
+      // Add user message
+      messages.push({ id: messages.length + 1, text: message, isBot: false });
+      input.value = '';
+
+      // Re-render and process bot response
+      renderChatInterface();
+      handleBotResponse(message);
+    }
+
+    // Handle quick question selection
+    function handleQuickQuestion(question) {
+      messages.push({ id: messages.length + 1, text: question, isBot: false });
+      renderChatInterface();
+      handleBotResponse(question);
+    }
+
+    // Process bot response
+    function handleBotResponse(userMessage) {
+      isTyping = true;
+      renderChatInterface();
+
+      // Simulate typing delay
+      setTimeout(() => {
+        isTyping = false;
+
+        // Generate response based on user message
+        let botResponse;
+        const lowerCaseMessage = userMessage.toLowerCase();
+
+        if (lowerCaseMessage.includes('hour') || lowerCaseMessage.includes('open')) {
+          botResponse = "Fog & Flame is open Tuesday to Sunday from 11:00 AM to 10:00 PM. We're closed on Mondays for maintenance and preparation.";
+        } else if (lowerCaseMessage.includes('reservation') || lowerCaseMessage.includes('book') || lowerCaseMessage.includes('table')) {
+          botResponse = "I'd be delighted to help with a reservation. You can book through our website's reservation page, or by calling us at (555) 123-4567. Weekend bookings should ideally be made 48 hours in advance.";
+        } else if (lowerCaseMessage.includes('menu') || lowerCaseMessage.includes('food') || lowerCaseMessage.includes('dish')) {
+          botResponse = "The Fog & Flame menu features an exquisite fusion of international cuisines prepared with locally-sourced ingredients. Our renowned chef's specialties include our signature Gourmet Pasta, artisanal Sushi selection, and award-winning desserts.";
+        } else if (lowerCaseMessage.includes('location') || lowerCaseMessage.includes('address') || lowerCaseMessage.includes('where')) {
+          botResponse = "Fog & Flame is located at 123 Borough High Street, Gourmet District, London SE1. We're conveniently situated just a 5-minute walk from London Bridge Station.";
+        } else if (lowerCaseMessage.includes('price') || lowerCaseMessage.includes('cost') || lowerCaseMessage.includes('expensive')) {
+          botResponse = "Our main courses range from $18 to $35, with appetizers from $8 to $15. I would recommend our price-fixed tasting menu at $55 per person which includes an appetizer, main course, and dessert - excellent value for the experience.";
+        } else if (lowerCaseMessage.includes('special') || lowerCaseMessage.includes('event')) {
+          botResponse = "We offer bespoke event hosting for parties of 8 or more. Our chef also prepares seasonal tasting menus and hosts monthly culinary experiences. May I suggest joining our mailing list for updates on upcoming special events?";
+        } else if (lowerCaseMessage.includes('allerg') || lowerCaseMessage.includes('dietary') || lowerCaseMessage.includes('vegan') || lowerCaseMessage.includes('vegetarian')) {
+          botResponse = "We accommodate all dietary requirements including vegetarian, vegan, gluten-free options, and food allergies. Our chef takes great pride in creating exceptional dishes for every guest, regardless of dietary restrictions.";
+        } else {
+          botResponse = "It's my pleasure to assist you with your inquiry about Fog & Flame. Is there something specific about our menu, reservations, special events, or location that I can help clarify for you?";
+        }
+
+        messages.push({ id: messages.length + 1, text: botResponse, isBot: true });
+        renderChatInterface();
+      }, 1500);
+    }
+
+    // Get random speech for Ageli
+    function getRandomSpeech() {
+      const phrases = [
+        "Need assistance with Fog & Flame?",
+        "Would you like to make a reservation?",
+        "May I help you today?",
+        "Questions about our menu?",
+        "Hi there! I'm Ageli!",
+        "Looking for dining options?",
+        "Need recommendations?",
+        "Can I suggest our chef's specials?",
+        "Welcome to Fog & Flame!",
+        "How may I assist you today?",
+        "Our specials today are amazing!",
+        "Can I help with your reservation?"
+      ];
+      return phrases[Math.floor(Math.random() * phrases.length)];
+    }
+
+    // Show speech bubble
+    function showSpeechBubble() {
+      // Only show speech bubble if permanent caption is not visible
+      if (!permanentCaptionVisible) {
+        speechBubbleVisible = true;
+        renderAgeli();
+
+        // Hide speech bubble after a few seconds
+        clearTimeout(speechTimeout);
+        speechTimeout = setTimeout(() => {
+          speechBubbleVisible = false;
+          renderAgeli();
+        }, 5000);
+      }
+    }
+
+    // Initialize
+    renderAgeli();
+    renderChatButton();
+
+    // Add click event to Ageli
+    ageli.addEventListener('click', function() {
+      clearTimeout(speechTimeout);
+      speechBubbleVisible = false;
+      permanentCaptionVisible = false; // Hide permanent caption when clicked
+      renderAgeli();
+      if (!isOpen) {
+        toggleChat();
+      } else {
+        // If chat is already open, hide it
+        toggleChat();
+      }
+    });
+
+    // Show initial speech bubble after a delay
+    setTimeout(showSpeechBubble, 2000);
+
+    // Periodically show speech bubbles
+    setInterval(() => {
+      if (!isOpen && Math.random() > 0.7) {
+        showSpeechBubble();
+      }
+    }, 15000);
+  });
+
+
+</script>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has seen the intro already
+    const hasSeenIntro = localStorage.getItem('fogFlameIntroSeen');
+
+    if (!hasSeenIntro) {
+      // Create a temporary intro container,
+      const introFrame = document.createElement('iframe');
+      introFrame.style.position = 'fixed';
+      introFrame.style.top = '0';
+      introFrame.style.left = '0';
+      introFrame.style.width = '100vw';
+      introFrame.style.height = '100vh';
+      introFrame.style.border = 'none';
+      introFrame.style.zIndex = '9999';
+      introFrame.src = 'fog-flame-intro.html'; // Path to the intro HTML file
+
+      // Prevent scrolling while intro is playing
+      document.body.style.overflow = 'hidden';
+
+      // Add the intro frame to the document
+      document.body.appendChild(introFrame);
+
+      // Set the cookie to remember that user has seen the intro
+      localStorage.setItem('fogFlameIntroSeen', 'true');
+
+      // Remove the intro after it completes.
+      setTimeout(() => {
+        introFrame.remove();
+        document.body.style.overflow = '';
+      }, 8500); // Slightly longer than the animation to ensure smooth transition
+    }
+
+    // Add a button to watch the intro again (optional)
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const watchIntroAgain = document.createElement('a');
+      watchIntroAgain.href = '#';
+      watchIntroAgain.style.color = '#fff';
+      watchIntroAgain.style.marginLeft = '15px';
+      watchIntroAgain.style.fontSize = '0.9rem';
+      watchIntroAgain.textContent = 'Watch Intro';
+
+      watchIntroAgain.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('fogFlameIntroSeen');
+        window.location.reload();
+      });
+
+      footer.querySelector('.container').appendChild(watchIntroAgain);
+    }
+  });
+</script>
+</body>
+
+</html>
+
+
+
